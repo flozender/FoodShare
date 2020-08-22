@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-
 const Joi = require('joi');
 const config = require('config');
 const jwt = require('jsonwebtoken');
+
+const { notificationSchema } = require('./notification.js');
 
 const userSchema = new mongoose.Schema(
   {
@@ -55,7 +56,7 @@ const userSchema = new mongoose.Schema(
     },
     notifications: [
       {
-        type: String,
+        type: notificationSchema,
       },
     ],
     guest: {
