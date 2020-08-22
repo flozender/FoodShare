@@ -1,16 +1,15 @@
-const joi = require("joi");
-const validate = require("./validate");
+const Joi = require("joi");
 
 module.exports = {
-	createValidate: async (request, response, next) => {
+	create: async (req, res, next) => {
 		const schema = Joi.object({
 			name: Joi.string().required().max(30),
-      description: Joi.string().required().max(120),
-      quantity: Joi.number().required()
-    });
-    
-    const { error } = schema.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message });
-    next();
+			description: Joi.string().required().max(120),
+			quantity: Joi.number().required(),
+		});
+
+		const { error } = schema.validate(req.body);
+		if (error) return res.status(403).send({ error: error.details[0].message });
+		next();
 	},
 };
