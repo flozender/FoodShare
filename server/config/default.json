@@ -1,4 +1,4 @@
 {
-  "jwtPrivateKey": "",
-  "db": "mongodb://localhost/foodshare"
+	"jwtPrivateKey": "",
+	"db": "mongodb://localhost/foodshare"
 }
