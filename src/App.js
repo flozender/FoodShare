@@ -1,5 +1,4 @@
 import React from "react";
-import "react-log-state";
 // We need to import SVGs as react components, DM me when you see this -TH
 import logo from "./assets/logo.svg";
 
