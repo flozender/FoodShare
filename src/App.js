@@ -6,10 +6,15 @@ import {Home} from './Home';
 import {About} from './About';
 import {Contact} from './Contact';
 import {NoMatch} from './NoMatch';
+import {Layout} from './components/Layout';
+import {Navigation} from './components/Navigation';
+
 
 function App() {
   return (
     <React.Fragment>
+	  <Navigation />
+	  <Layout>
 	  <Router> 
 	    <Switch> 
 	      <Route exact path="/" component={Home} />
@@ -18,6 +23,7 @@ function App() {
 	      <Route exact component={NoMatch} />
 	    </Switch>
 	  </Router>
+	  </Layout>
 	</React.Fragment>
   );
 }
