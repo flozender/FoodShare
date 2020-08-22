@@ -108,9 +108,8 @@ const Login = () => {
 };
 
 const style_lc = {
-  width: "50vw",
   margin: "auto",
-  padding: "10%",
+  padding: "5%",
 };
 
 export default Login;
