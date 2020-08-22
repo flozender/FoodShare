@@ -30,4 +30,17 @@ router.post('/', validate(validateUser), async (req, res) => {
   res.send(responseData);
 });
 
+router.put('/setlocation', auth, async (req, res) => {
+  const user = await User.findById(req.user._id).select('-password');
+  if (!user)
+    return res.status(400).send('No user found with the given userId.');
+
+  user.location.coordinates = [];
+  user.location.coordinates.push(+req.body.lat);
+  user.location.coordinates.push(+req.body.long);
+
+  await user.save();
+  res.send(user);
+});
+
 module.exports = router;
