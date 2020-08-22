@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
 import {
   Container,
   Row,
@@ -10,6 +12,8 @@ import {
   Button,
 } from "react-bootstrap";
 
+import { signInStart, signUpStart } from "../redux/user/user.actions";
+
 const Login = () => {
   const [state, setState] = useState({
     show: true,
@@ -18,13 +22,41 @@ const Login = () => {
     confirmPassword: "",
     name: "",
   });
+
   const { show, username, password, name, confirmPassword } = state;
+  var disable = true;
+  if (show) {
+    // if sign-in page
+    if (username !== "" && password !== "") {
+      disable = false;
+    }
+  } else {
+    // if sign-up page
+    if (
+      username !== "" &&
+      password !== "" &&
+      password === confirmPassword &&
+      name !== ""
+    ) {
+      disable = false;
+    }
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (show) {
+      signInStart(username, password);
+    } else {
+      signUpStart(username);
+    }
+  };
 
   const handleChange = (event) => {
     const { value, name } = event.target;
 
     setState({ ...state, [name]: value });
   };
+
   return (
     <Container style={style_lc}>
       <Row>
@@ -93,12 +125,19 @@ const Login = () => {
                     onChange={handleChange}
                     placeholder="Confirm Password"
                     aria-label="Confirm Password"
+                    type="password"
                     name="confirmPassword"
                     value={confirmPassword}
                   />
                 </InputGroup>
               )}
-              <Button variant="primary">Submit</Button>
+              <Button
+                variant="primary"
+                disabled={disable}
+                onClick={() => handleSubmit()}
+              >
+                Submit
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -112,4 +151,9 @@ const style_lc = {
   padding: "5%",
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (data) => dispatch(signUpStart(data)),
+  signInStart: (email, password) => dispatch(signInStart({ email, password })),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
