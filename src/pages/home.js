@@ -1,8 +1,13 @@
-import React from 'react';
+import React from "react";
+import Hero from "../components/hero";
+import Middle from "../components/middle";
+import Bottom from "../components/bottom";
+import { Container } from "react-bootstrap";
 
 export const Home = () => (
-	<div>
-	  <h2>Page Title</h2>
-	  <p>Text</p>
-	</div>
-)
+  <div>
+    <Hero />
+    <Middle />
+    <Bottom />
+  </div>
+);

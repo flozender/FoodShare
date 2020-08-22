@@ -21,7 +21,7 @@ export const Navigation = () => (
       <Navbar.Brand href="/">FoodShare</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
+        <Nav className="mr-auto">
           <Nav.Item>
             <Nav.Link href="/">Home</Nav.Link>
           </Nav.Item>
