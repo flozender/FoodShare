@@ -19,11 +19,11 @@ router.post('/', validate(validateAuth), async (req, res) => {
 });
 
 function validateAuth(req) {
-  const schema = {
+  const schema = Joi.object({
     email: Joi.string().min(5).max(255).required(),
     password: Joi.string().min(8).max(255).required(),
-  };
-  return Joi.validate(req, schema);
+  });
+  return schema.validate(req);
 }
 
 module.exports = router;
