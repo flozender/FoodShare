@@ -10,6 +10,7 @@ const {
 const validate = require('../middleware/validate');
 const auth = require('../middleware/auth');
 
+// Adds a new notification.
 router.post('/', validate(validateNotification), async (req, res) => {
   const notification = new Notification(
     _.pick(req.body, ['type', 'to', 'from', 'description', 'actionURL'])
@@ -25,6 +26,7 @@ router.post('/', validate(validateNotification), async (req, res) => {
   res.send(notification);
 });
 
+// Changes the notification status from unread to read.
 router.put('/:notificationId', auth, async (req, res) => {
   const user = await User.findById(req.body.userId);
   if (!user)

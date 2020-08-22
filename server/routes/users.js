@@ -7,11 +7,13 @@ const { User, validateUser } = require('../models/user');
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validate');
 
+// Gets the currently authenticated user.
 router.get('/me', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
   res.send(user);
 });
 
+// Registers a new user.
 router.post('/', validate(validateUser), async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user)
@@ -30,6 +32,7 @@ router.post('/', validate(validateUser), async (req, res) => {
   res.send(responseData);
 });
 
+// Add or update a user location and returns the new location.
 router.put('/setlocation', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
   if (!user)
@@ -40,7 +43,19 @@ router.put('/setlocation', auth, async (req, res) => {
   user.location.coordinates.push(+req.body.long);
 
   await user.save();
-  res.send(user);
+  res.send(user.location.coordinates);
+});
+
+// Switches the value of guest and returns the new value.
+router.put('/switchmode', auth, async (req, res) => {
+  const user = await User.findById(req.user._id).select('-password');
+  if (!user)
+    return res.status(400).send('No user found with the given userId.');
+
+  user.guest = !user.guest;
+  await user.save();
+
+  res.send(user.guest);
 });
 
 module.exports = router;
