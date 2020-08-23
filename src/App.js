@@ -13,6 +13,8 @@ import { About } from "./pages/about";
 import { Contact } from "./pages/contact";
 import { NoMatch } from "./pages/noMatch";
 import Login from "./pages/login";
+import Find from "./pages/find";
+import Share from "./pages/share";
 
 import { Layout } from "./components/layout";
 import Footer from "./components/footer";
@@ -34,6 +36,9 @@ function App({ currentUser }) {
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/find" component={Find} />
+          <Route exact path="/share" component={Share} />
+
           <Route
             exact
             path="/signin"

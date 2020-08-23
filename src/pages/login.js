@@ -71,7 +71,10 @@ const Login = ({ signInStart, signUpStart }) => {
   return (
     <div style={style_lc} className="d-flex justify-content-center">
       <Form onSubmit={handleSubmit} style={formStyle}>
-        <Card style={cardStyle} className="d-flex justify-content-center">
+        <Card
+          style={cardStyle}
+          className="d-flex justify-content-center subtle-shadow"
+        >
           <Card.Body className="pb-1">
             {show ? null : (
               <Form.Group as={Row} controlId="formHorizontalName">
@@ -218,7 +221,7 @@ const style_lc = {
 
 const cardStyle = {
   width: "40vw",
-  boxShadow: "1px 2px 1px 1px #f4decd",
+  // boxShadow: "1px 2px 1px 1px #f4decd",
   // height: "50vw",
   fontFamily: "Raleway",
   padding: "2rem",

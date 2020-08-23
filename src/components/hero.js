@@ -1,11 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../redux/user/user.selector";
 import { Nav, Navbar, Container, Row, Col, Button } from "react-bootstrap";
 import vars from "../vars";
 
 import HeroImage from "../assets/hero.jpg";
 import IconWhite from "../assets/IconWhite.png";
 
-export const Hero = () => {
+export const Hero = ({ currentUser }) => {
   return (
     <>
       <Container fluid style={style} className="d-flex align-items-center">
@@ -38,16 +41,39 @@ export const Hero = () => {
               </h6>
             </Col>
           </Row>
-          <Row>
-            <Col className="d-flex justify-content-center text-center py-4">
-              <Button
-                variant="outline-danger"
-                style={buttonStyle}
-                href="/signin"
-              >
-                Get Started
-              </Button>
-            </Col>
+          <Row className="py-3 d-flex justify-content-center">
+            {currentUser ? (
+              <Row className="py-3 d-flex justify-content-center">
+                <Col className="d-flex  text-center py-4">
+                  <Button
+                    variant="outline-danger"
+                    style={buttonStyle}
+                    href="/share"
+                  >
+                    Share Food
+                  </Button>
+                </Col>
+                <Col className="d-flex  text-center py-4">
+                  <Button
+                    variant="outline-danger"
+                    style={{ ...buttonStyle, backgroundColor: "#ef7c24" }}
+                    href="/find"
+                  >
+                    Find Food
+                  </Button>
+                </Col>
+              </Row>
+            ) : (
+              <Col className="d-flex justify-content-center text-center py-4">
+                <Button
+                  variant="outline-danger"
+                  style={buttonStyle}
+                  href="/signin"
+                >
+                  Get Started
+                </Button>
+              </Col>
+            )}
           </Row>
         </Col>
       </Container>
@@ -79,4 +105,8 @@ const buttonStyle = {
   letterSpacing: "1px",
 };
 
-export default Hero;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+export default connect(mapStateToProps, null)(Hero);
