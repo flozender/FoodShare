@@ -89,6 +89,7 @@ const Login = ({ signInStart, signUpStart }) => {
                     name="name"
                     value={name}
                     style={{ backgroundColor: vars.background }}
+                    required
                   />
                 </Col>
               </Form.Group>
@@ -105,6 +106,7 @@ const Login = ({ signInStart, signUpStart }) => {
                   aria-label="Email"
                   name="email"
                   value={email}
+                  required
                   style={{ backgroundColor: vars.background }}
                 />
               </Col>
@@ -122,6 +124,7 @@ const Login = ({ signInStart, signUpStart }) => {
                     name="phone"
                     value={phone}
                     style={{ backgroundColor: vars.background }}
+                    required
                   />
                 </Col>
               </Form.Group>
@@ -139,6 +142,7 @@ const Login = ({ signInStart, signUpStart }) => {
                     name="ssn"
                     value={ssn}
                     style={{ backgroundColor: vars.background }}
+                    required
                   />
                 </Col>
               </Form.Group>
@@ -156,6 +160,7 @@ const Login = ({ signInStart, signUpStart }) => {
                   onChange={handleChange}
                   aria-label="Password"
                   style={{ backgroundColor: vars.background }}
+                  required
                 />
               </Col>
             </Form.Group>
@@ -174,6 +179,7 @@ const Login = ({ signInStart, signUpStart }) => {
                     onChange={handleChange}
                     aria-label="Confirm Password"
                     style={{ backgroundColor: vars.background }}
+                    required
                   />
                 </Col>
               </Form.Group>

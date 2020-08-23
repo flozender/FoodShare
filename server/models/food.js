@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const foodSchema = new mongoose.Schema({
   name: String,
   allergens: Array,
-  diet: Number,
+  diet: Array,
   long: Number,
   lat: Number,
   description: String,

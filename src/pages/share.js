@@ -23,34 +23,117 @@ const Share = ({ signInStart, signUpStart }) => {
     description: "",
     long: "",
     lat: "",
-    allergens: [],
     diet: "None",
+    milk: false,
+    egg: false,
+    soy: false,
+    gluten: false,
   });
 
-  const { show, email, password, name, confirmPassword, phone, ssn } = state;
+  const { name, description, diet, milk, egg, soy, gluten } = state;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    var data;
-    if (show) {
-      data = { email, password };
-      console.log(data);
-      signInStart(data);
-    } else {
-      data = { name, email, password, ssn, phone };
-      console.log("SDDSDD", data);
-
-      signUpStart(data);
-    }
+    // Create food
   };
 
   const handleChange = (event) => {
-    const { value, name } = event.target;
+    var { value, name } = event.target;
+    const allergens = ["milk", "soy", "gluten", "egg"];
+
+    if (allergens.includes(name)) {
+      value = !state[name];
+    }
 
     setState({ ...state, [name]: value });
   };
 
-  return <div style={style_lc} className="d-flex justify-content-center"></div>;
+  return (
+    <div style={style_lc} className="d-flex justify-content-center">
+      <Form onSubmit={handleSubmit} style={formStyle}>
+        <Card
+          style={cardStyle}
+          className="d-flex justify-content-center subtle-shadow"
+        >
+          <Card.Body className="pb-1">
+            <Form.Group as={Row} controlId="formHorizontalName">
+              <Form.Label column sm={4}>
+                Food Name
+              </Form.Label>
+              <Col sm={8}>
+                <Form.Control
+                  type="text"
+                  onChange={handleChange}
+                  aria-label="Name"
+                  name="name"
+                  value={name}
+                  style={{ backgroundColor: vars.background }}
+                  required
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} controlId="formHorizontalName">
+              <Form.Label column sm={4}>
+                Description
+              </Form.Label>
+              <Col sm={8}>
+                <Form.Control
+                  as="textarea"
+                  rows="3"
+                  onChange={handleChange}
+                  aria-label="Name"
+                  name="name"
+                  value={name}
+                  style={{ backgroundColor: vars.background }}
+                  required
+                />
+              </Col>
+            </Form.Group>
+            <hr style={hrstyle} />
+            <Form.Group>
+              <Form.Label
+                sm={15}
+                style={{ fontSize: "0.8rem", marginBottom: "0" }}
+              >
+                Does the food contain any common allergens?
+              </Form.Label>
+              <br></br>
+              <Form.Label
+                sm={20}
+                style={{
+                  fontSize: "0.7rem",
+                  fontStyle: "Open Sans",
+                  textTransform: "initial",
+                }}
+              >
+                Check all that apply
+              </Form.Label>
+            </Form.Group>
+            <hr style={hrstyle} />
+            <Form.Group>
+              <Form.Label
+                sm={15}
+                style={{ fontSize: "0.8rem", marginBottom: "0" }}
+              >
+                Is The food suitable for any of the following diets?
+              </Form.Label>
+              <br></br>
+              <Form.Label
+                sm={20}
+                style={{
+                  fontSize: "0.7rem",
+                  fontStyle: "Open Sans",
+                  textTransform: "initial",
+                }}
+              >
+                Check all that apply
+              </Form.Label>
+            </Form.Group>
+          </Card.Body>
+        </Card>
+      </Form>
+    </div>
+  );
 };
 
 const style_lc = {
