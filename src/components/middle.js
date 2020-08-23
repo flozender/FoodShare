@@ -73,6 +73,7 @@ const style = {
   fontFamily: "Raleway",
   color: vars.text,
   fontSize: "2rem",
+  backgroundColor: "white",
 };
 
 const buttonStyle = {

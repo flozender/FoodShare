@@ -1,11 +1,8 @@
 import UserActionTypes from "./user.types";
 
-export const signInStart = (username, password) => ({
+export const signInStart = (userData) => ({
   type: UserActionTypes.SIGN_IN_START,
-  payload: {
-    username,
-    password,
-  },
+  payload: userData,
 });
 
 export const signInSuccess = (userData) => ({

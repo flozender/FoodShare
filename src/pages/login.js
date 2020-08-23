@@ -10,20 +10,25 @@ import {
   InputGroup,
   FormControl,
   Button,
+  Form,
 } from "react-bootstrap";
 
 import { signInStart, signUpStart } from "../redux/user/user.actions";
 
-const Login = () => {
+import vars from "../vars";
+
+const Login = ({ signInStart, signUpStart }) => {
   const [state, setState] = useState({
     show: true,
     email: "",
     password: "",
     confirmPassword: "",
     name: "",
+    ssn: "",
+    phone: "",
   });
 
-  const { show, email, password, name, confirmPassword } = state;
+  const { show, email, password, name, confirmPassword, phone, ssn } = state;
   var disable = true;
   if (show) {
     // if sign-in page
@@ -44,10 +49,16 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    var data;
     if (show) {
-      signInStart(email, password);
+      data = { email, password };
+      console.log(data);
+      signInStart(data);
     } else {
-      signUpStart(email);
+      data = { name, email, password, ssn, phone };
+      console.log("SDDSDD", data);
+
+      signUpStart(data);
     }
   };
 
@@ -58,101 +69,198 @@ const Login = () => {
   };
 
   return (
-    <Container style={style_lc}>
-      <Row>
-        <Col>
-          <form onSubmit={handleSubmit}>
-            <Card>
-              <Card.Header>
-                <Nav variant="tabs" defaultActiveKey="#signin">
-                  <Nav.Item>
-                    <Nav.Link
-                      href="#signin"
-                      onClick={() => setState({ ...state, show: true })}
-                    >
-                      Sign In
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link
-                      href="#signup"
-                      onClick={() => setState({ ...state, show: false })}
-                    >
-                      Sign Up
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Card.Header>
-              <Card.Body>
-                <Card.Title>{show ? "Welcome Back!" : "Hello!"}</Card.Title>
-                <Card.Text>
-                  {show
-                    ? "Sign in to your account to continue."
-                    : "Create an account below to start sharing!"}
-                </Card.Text>
-                {show ? null : (
-                  <InputGroup className="mb-3">
-                    <FormControl
-                      onChange={handleChange}
-                      placeholder="Name"
-                      aria-label="Name"
-                      name="name"
-                      value={name}
-                    />
-                  </InputGroup>
-                )}
-                <InputGroup className="mb-3">
-                  <FormControl
+    <div style={style_lc} className="d-flex justify-content-center">
+      <Form onSubmit={handleSubmit} style={formStyle}>
+        <Card style={cardStyle} className="d-flex justify-content-center">
+          <Card.Body className="pb-1">
+            {show ? null : (
+              <Form.Group as={Row} controlId="formHorizontalName">
+                <Form.Label column sm={3}>
+                  Name
+                </Form.Label>
+                <Col sm={8}>
+                  <Form.Control
+                    type="text"
                     onChange={handleChange}
-                    placeholder="Email"
-                    aria-label="Email"
-                    name="email"
-                    type="email"
-                    value={email}
+                    aria-label="Name"
+                    name="name"
+                    value={name}
+                    style={{ backgroundColor: vars.background }}
                   />
-                </InputGroup>
-                <InputGroup className="mb-3">
-                  <FormControl
+                </Col>
+              </Form.Group>
+            )}
+
+            <Form.Group as={Row} controlId="formHorizontalEmail">
+              <Form.Label column sm={3}>
+                Email
+              </Form.Label>
+              <Col sm={8}>
+                <Form.Control
+                  type="email"
+                  onChange={handleChange}
+                  aria-label="Email"
+                  name="email"
+                  value={email}
+                  style={{ backgroundColor: vars.background }}
+                />
+              </Col>
+            </Form.Group>
+            {show ? null : (
+              <Form.Group as={Row} controlId="formHorizontalPhone">
+                <Form.Label column sm={3}>
+                  Phone
+                </Form.Label>
+                <Col sm={8}>
+                  <Form.Control
+                    type="text"
                     onChange={handleChange}
-                    placeholder="Password"
-                    aria-label="Password"
+                    aria-label="Phone"
+                    name="phone"
+                    value={phone}
+                    style={{ backgroundColor: vars.background }}
+                  />
+                </Col>
+              </Form.Group>
+            )}
+            {show ? null : (
+              <Form.Group as={Row} controlId="formHorizontalSSN">
+                <Form.Label column sm={3}>
+                  SSN
+                </Form.Label>
+                <Col sm={8}>
+                  <Form.Control
+                    type="text"
+                    onChange={handleChange}
+                    aria-label="SSN"
+                    name="ssn"
+                    value={ssn}
+                    style={{ backgroundColor: vars.background }}
+                  />
+                </Col>
+              </Form.Group>
+            )}
+            <Form.Group as={Row} controlId="formHorizontalPassword">
+              <Form.Label column sm={3}>
+                Password
+              </Form.Label>
+              <Col sm={8}>
+                <Form.Control
+                  variant="outline-warning"
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                  aria-label="Password"
+                  style={{ backgroundColor: vars.background }}
+                />
+              </Col>
+            </Form.Group>
+
+            {show ? null : (
+              <Form.Group as={Row} controlId="formHorizontalConfirmPassword">
+                <Form.Label column sm={3}>
+                  Confirm Password
+                </Form.Label>
+                <Col sm={8}>
+                  <Form.Control
+                    variant="outline-warning"
                     type="password"
-                    name="password"
-                    value={password}
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={handleChange}
+                    aria-label="Confirm Password"
+                    style={{ backgroundColor: vars.background }}
                   />
-                </InputGroup>
-                {show ? null : (
-                  <InputGroup className="mb-3">
-                    <FormControl
-                      onChange={handleChange}
-                      placeholder="Confirm Password"
-                      aria-label="Confirm Password"
-                      type="password"
-                      name="confirmPassword"
-                      value={confirmPassword}
-                    />
-                  </InputGroup>
-                )}
-                <Button variant="primary" disabled={disable} type="submit">
-                  Submit
+                </Col>
+              </Form.Group>
+            )}
+            <Form.Group>
+              <Col className="d-flex justify-content-center pt-3">
+                <Button
+                  variant="outline-danger"
+                  // disabled={disable}
+                  type="submit"
+                  style={buttonStyle}
+                >
+                  {show ? "Sign In" : "Sign Up"}
                 </Button>
-              </Card.Body>
-            </Card>
-          </form>
-        </Col>
-      </Row>
-    </Container>
+              </Col>
+            </Form.Group>
+          </Card.Body>
+          <hr style={hrstyle}></hr>
+          <Col className="d-flex justify-content-center">
+            {show ? "Don't have an account?" : "Already have an account?"}
+          </Col>
+          <Col className="d-flex justify-content-center pt-3 pb-5">
+            <Button
+              variant="light"
+              // disabled={disable}
+              style={buttonStyle2}
+              onClick={() => setState({ ...state, show: !show })}
+            >
+              {show ? "Sign Up" : "Sign In"}
+            </Button>
+          </Col>
+        </Card>
+      </Form>
+    </div>
   );
 };
 
 const style_lc = {
-  margin: "auto",
-  padding: "5%",
+  // margin: "auto",
+  padding: "10vh 20vw",
+  background: `linear-gradient(to right, #e47274 0%, #f0a773 100%)`,
+  minHeight: "120%",
+  height: "120vh",
+};
+
+const cardStyle = {
+  width: "40vw",
+  boxShadow: "1px 2px 1px 1px #f4decd",
+  // height: "50vw",
+  fontFamily: "Raleway",
+  padding: "2rem",
+};
+const formStyle = {
+  padding: "2rem 2rem 0 2rem",
+  textTransform: "uppercase",
+  fontFamily: "Raleway, sans-serif",
+  fontWeight: "600",
+  letterSpacing: "1px",
+};
+
+const buttonStyle = {
+  borderRadius: "2rem",
+  padding: "0.7rem 1rem",
+  backgroundColor: "#dd2326",
+  color: "white",
+  boxShadow: "0px 6px #c5c5c5",
+  width: "9rem",
+  textTransform: "uppercase",
+  letterSpacing: "1px",
+};
+
+const buttonStyle2 = {
+  borderRadius: "2rem",
+  padding: "0.7rem 1rem",
+  color: `${vars.text}`,
+  boxShadow: "0px 6px #c5c5c5",
+  width: "9rem",
+  textTransform: "uppercase",
+  border: "0.2rem solid red",
+  letterSpacing: "1px",
+};
+const hrstyle = {
+  border: "0",
+  height: "1px",
+  backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))`,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   signUpStart: (data) => dispatch(signUpStart(data)),
-  signInStart: (email, password) => dispatch(signInStart({ email, password })),
+  signInStart: (data) => dispatch(signInStart(data)),
 });
 
 export default connect(null, mapDispatchToProps)(Login);

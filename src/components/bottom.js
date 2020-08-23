@@ -11,7 +11,7 @@ import {
 
 import vars from "../vars";
 
-import IconWhite from "../assets/IconWhite.png";
+import HeartIcon from "../assets/HeartIconSnip.png";
 
 export const Bottom = () => {
   return (
@@ -19,7 +19,7 @@ export const Bottom = () => {
       <Col>
         <Row>
           <Col className="d-flex justify-content-center text-center py-3">
-            ADD ICON HERE
+            <img src={HeartIcon} alt="" width="9%" />
           </Col>
         </Row>
         <Row>
@@ -90,7 +90,7 @@ export const Bottom = () => {
 };
 
 const style = {
-  height: "80vh",
+  height: "90vh",
   overflow: "hidden",
   //   justifyContent: "center",
   fontFamily: "Raleway",

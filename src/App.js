@@ -1,7 +1,12 @@
 import React from "react";
-
-import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 import { Home } from "./pages/home";
 import { About } from "./pages/about";
@@ -11,12 +16,17 @@ import Login from "./pages/login";
 
 import { Layout } from "./components/layout";
 import Footer from "./components/footer";
-import TopBar from "./components/topbar";
+import { TopBar, NavBar } from "./components/topbar";
 
-function App() {
+import { selectCurrentUser } from "./redux/user/user.selector";
+
+import "./App.css";
+
+function App({ currentUser }) {
   return (
     <React.Fragment>
       <TopBar />
+      <NavBar />
       {/* <Navigation /> */}
       {/* <Layout> */}
       <Router>
@@ -24,7 +34,11 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/signin" component={Login} />
+          <Route
+            exact
+            path="/signin"
+            render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
+          />
           <Route exact component={NoMatch} />
         </Switch>
       </Router>
@@ -34,4 +48,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+export default connect(mapStateToProps, null)(App);

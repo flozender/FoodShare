@@ -1,10 +1,11 @@
 import axios from "axios";
 
-export const requestSignIn = (userCredentials) => {
+export const requestSignIn = ({ payload }) => {
+  console.log("RESSS", payload);
   return axios({
     url: "/api/auth",
     method: "post",
-    data: { ...userCredentials },
+    data: { ...payload },
   });
 };
 

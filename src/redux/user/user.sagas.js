@@ -10,13 +10,12 @@ import {
 } from "./user.actions";
 import { requestSignIn, requestSignUp } from "../../utils/auth";
 
-function* signIn({ payload }) {
+function* signIn(payload) {
   try {
     const { data } = yield call(requestSignIn, payload);
-
-    if (data.success) {
-      const { username, token, branch } = data;
-      yield put(signInSuccess({ username, token, branch }));
+    if (data !== "") {
+      // const { email } = data;
+      yield put(signInSuccess({ token: data }));
     } else {
       throw data;
     }
