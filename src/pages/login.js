@@ -52,12 +52,9 @@ const Login = ({ signInStart, signUpStart }) => {
     var data;
     if (show) {
       data = { email, password };
-      console.log(data);
       signInStart(data);
     } else {
       data = { name, email, password, ssn, phone };
-      console.log("SDDSDD", data);
-
       signUpStart(data);
     }
   };

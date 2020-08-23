@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const requestSignIn = ({ payload }) => {
-  console.log("RESSS", payload);
   return axios({
     url: "/api/auth",
     method: "post",

@@ -1,4 +1,4 @@
-const Food = require('../models/food');
+const Food = require("../models/food");
 
 module.exports = {
   create: async (req, res) => {
@@ -7,7 +7,7 @@ module.exports = {
       food.save();
       return res.status(200).send({
         food,
-        message: 'food successfully created',
+        message: "food successfully created",
       });
     } catch (err) {
       return res.status(500).send(err);
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   readOne: async (req, res) => {
-    if (!req.params.id) return res.status(400).send('Bad request');
+    if (!req.params.id) return res.status(400).send("Bad request");
     try {
       const food = await Food.find({ _id: req.params.id });
 
@@ -25,10 +25,10 @@ module.exports = {
         return res.status(200).send(food);
       }
     } catch (err) {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send('Food not found');
+      if (err.kind === "ObjectId") {
+        return res.status(404).send("Food not found");
       }
-      return res.status(500).send('Error retrieving Food');
+      return res.status(500).send("Error retrieving Food");
     }
   },
 
@@ -50,12 +50,12 @@ module.exports = {
         return res.status(200).send(food);
       }
     } catch (err) {
-      res.status(500).send('Some error occured while retrieving foods', err);
+      res.status(500).send("Some error occured while retrieving foods", err);
     }
   },
 
   update: async (req, res) => {
-    if (!req.params.id) return res.status(400).send('Bad request');
+    if (!req.params.id) return res.status(400).send("Bad request");
 
     try {
       const food = await Food.findOneAndUpdate(
@@ -64,28 +64,28 @@ module.exports = {
         { new: true }
       );
 
-      if (!food) return res.status(404).send('Food not found');
+      if (!food) return res.status(404).send("Food not found");
       return res.status(200).send(food);
     } catch (err) {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send('Food not found');
+      if (err.kind === "ObjectId") {
+        return res.status(404).send("Food not found");
       }
-      res.status(500).send('Error updating food');
+      res.status(500).send("Error updating food");
     }
   },
 
   delete: async (req, res) => {
-    if (!req.params.id) return res.status(400).send('Bad request');
+    if (!req.params.id) return res.status(400).send("Bad request");
 
     try {
       const food = await Food.findOneAndRemove({ _id: req.params.id });
-      if (!food) return res.status(404).send('Food not found');
-      return res.status(200).send('Food deleted successfully');
+      if (!food) return res.status(404).send("Food not found");
+      return res.status(200).send("Food deleted successfully");
     } catch (err) {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send('Food not found');
+      if (err.kind === "ObjectId") {
+        return res.status(404).send("Food not found");
       }
-      res.status(500).send('Error deleting food');
+      res.status(500).send("Error deleting food");
     }
   },
 };
