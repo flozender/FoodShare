@@ -16,6 +16,7 @@ import Login from "./pages/login";
 import Find from "./pages/find";
 import Share from "./pages/share";
 
+
 import { Layout } from "./components/layout";
 import Footer from "./components/footer";
 import { TopBar, NavBar } from "./components/topbar";
@@ -27,6 +28,7 @@ import "./App.css";
 function App({ currentUser }) {
   return (
     <React.Fragment>
+
       <TopBar />
       <NavBar />
       {/* <Navigation /> */}
@@ -49,6 +51,7 @@ function App({ currentUser }) {
       </Router>
       {/* </Layout> */}
       <Footer />
+
     </React.Fragment>
   );
 }
