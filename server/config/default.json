@@ -1,5 +1,5 @@
 {
 	"jwtPrivateKey": "",
   
-  "db": "mongodb+srv://foodshare:diamondphil@cluster0.vz2cs.mongodb.net/test"
+  "db": "mongodb://localhost/foodshare"
 }
