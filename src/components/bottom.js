@@ -51,7 +51,7 @@ export const Bottom = () => {
               <FontAwesomeIcon icon={faPizzaSlice} style={iconStyle} />
             </Row>
             <Row style={headStyle}>RESTAURANTS</Row>
-            <Row style={textStyle}>Lorem ipsum dolor sit amet.</Row>
+            <Row style={textStyle}>Share extra ingredients or meals that were not picked up.</Row>
           </Col>
           <Col
             className="d-flex justify-content-center align-items-center text-center flex-column  "
@@ -61,7 +61,7 @@ export const Bottom = () => {
               <FontAwesomeIcon icon={faAppleAlt} style={iconStyle} />
             </Row>
             <Row style={headStyle}>GROCERY STORES</Row>
-            <Row style={textStyle}>Lorem ipsum dolor sit amet.</Row>
+            <Row style={textStyle}>Do not let grocery go past its expiration date.</Row>
           </Col>
           <Col
             className="d-flex justify-content-center align-items-center text-center flex-column "
@@ -71,7 +71,7 @@ export const Bottom = () => {
               <FontAwesomeIcon icon={faPepperHot} style={iconStyle} />
             </Row>
             <Row style={headStyle}>HOME COOKS</Row>
-            <Row style={textStyle}>Lorem ipsum dolor sit amet.</Row>
+            <Row style={textStyle}>Share leftower meals or ingrediants you cannot use up.</Row>
           </Col>
           <Col
             className="d-flex justify-content-center align-items-center text-center flex-column  "
@@ -81,7 +81,7 @@ export const Bottom = () => {
               <FontAwesomeIcon icon={faUtensils} style={iconStyle} />
             </Row>
             <Row style={headStyle}>PEOPLE IN NEED</Row>
-            <Row style={textStyle}>Lorem ipsum dolor sit amet.</Row>
+            <Row style={textStyle}>See what is available in your local area.</Row>
           </Col>
         </Row>
       </Col>
