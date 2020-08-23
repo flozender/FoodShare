@@ -18,7 +18,7 @@ export const Middle = () => {
               fontWeight: "900",
             }}
           >
-            This is the Section Headline, Continues to Two Lines
+            Connecting Local Communities, Allowing Them to Share Food
           </Col>
         </Row>
         <Row>
@@ -31,27 +31,27 @@ export const Middle = () => {
                 width: "70%",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
+              With so much food going to waste daily, FoodShare is a much-needed solution.{" "}
             </p>
           </Col>
         </Row>
 
         <Row>
           <Col className="d-flex justify-content-center ">
-            <h6
+            <p
               style={{
                 opacity: "0.7",
                 fontWeight: "600",
                 lineHeight: "2",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum non nisl placerat mi mattis eleifend. Morbi libero
-              nisl, sodales sed viverra nec, elementum vitae odio. Sed orci
-              arcu, lacinia a condimentum ut, mattis eu tellus. Aenean sagittis
-              ipsum non tempus volutpat. Aliquam interdum lacinia ligula,
-              faucibus egestas ligula mattis ac.
-            </h6>
+              Covid-19 crisis has led to an economic downturn worldwide with a lot of people losing their jobs and no end in sight. 
+              There is a great need for distribution of food in our communities, for those who have it to share it with those who do not
+              On the other hand, there is also the existing issue of food going to waste every day from restaurants, stores, and individuals,  
+              but no system available for them to easily share it before it spoils. 
+              This is where FoodShare FoodShare comes in as a user friendly solution that makes sharing food in communities easy and efficient. 
+              Simply sign up and start sharing!
+            </p>
           </Col>
         </Row>
         <Row>
