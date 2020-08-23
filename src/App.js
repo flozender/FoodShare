@@ -14,6 +14,7 @@ import { Contact } from "./pages/contact";
 import { NoMatch } from "./pages/noMatch";
 import Login from "./pages/login";
 
+
 import { Layout } from "./components/layout";
 import Footer from "./components/footer";
 import { TopBar, NavBar } from "./components/topbar";
@@ -25,6 +26,7 @@ import "./App.css";
 function App({ currentUser }) {
   return (
     <React.Fragment>
+
       <TopBar />
       <NavBar />
       {/* <Navigation /> */}
@@ -44,6 +46,7 @@ function App({ currentUser }) {
       </Router>
       {/* </Layout> */}
       <Footer />
+
     </React.Fragment>
   );
 }
