@@ -16,8 +16,6 @@ import Login from "./pages/login";
 import Find from "./pages/find";
 import Share from "./pages/share";
 
-
-import { Layout } from "./components/layout";
 import Footer from "./components/footer";
 import { TopBar, NavBar } from "./components/topbar";
 
@@ -28,11 +26,8 @@ import "./App.css";
 function App({ currentUser }) {
   return (
     <React.Fragment>
-
       <TopBar />
       <NavBar />
-      {/* <Navigation /> */}
-      {/* <Layout> */}
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -40,7 +35,6 @@ function App({ currentUser }) {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/find" component={Find} />
           <Route exact path="/share" component={Share} />
-
           <Route
             exact
             path="/signin"
@@ -49,9 +43,7 @@ function App({ currentUser }) {
           <Route exact component={NoMatch} />
         </Switch>
       </Router>
-      {/* </Layout> */}
       <Footer />
-
     </React.Fragment>
   );
 }

@@ -19,33 +19,15 @@ import vars from "../vars";
 
 const Share = ({ signInStart, signUpStart }) => {
   const [state, setState] = useState({
-    show: true,
-    email: "",
-    password: "",
-    confirmPassword: "",
     name: "",
-    ssn: "",
-    phone: "",
+    description: "",
+    long: "",
+    lat: "",
+    allergens: [],
+    diet: "None",
   });
 
   const { show, email, password, name, confirmPassword, phone, ssn } = state;
-  var disable = true;
-  if (show) {
-    // if sign-in page
-    if (email !== "" && password !== "") {
-      disable = false;
-    }
-  } else {
-    // if sign-up page
-    if (
-      email !== "" &&
-      password !== "" &&
-      password === confirmPassword &&
-      name !== ""
-    ) {
-      disable = false;
-    }
-  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
