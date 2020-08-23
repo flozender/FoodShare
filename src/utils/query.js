@@ -13,7 +13,7 @@ export const getFood = (token) => {
 
 export const createFood = (data) => {
   return axios({
-    url: "http://localhost:5000/api/food",
+    url: "http://localhost:5000/api/food/",
     method: "post",
     data: { ...data },
     headers: {

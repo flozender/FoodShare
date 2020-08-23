@@ -16,11 +16,11 @@ import {
 
 import { signInStart, signUpStart } from "../redux/user/user.actions";
 import { selectCurrentUser } from "../redux/user/user.selector";
-import { createFood, getFood } from "../utils/query";
 
 import vars from "../vars";
+import { foodCreateStart } from "../redux/food/food.actions";
 
-const Share = ({ signInStart, signUpStart, currentUser }) => {
+const Share = ({ signInStart, signUpStart, currentUser, createFood }) => {
   const [state, setState] = useState({
     name: "",
     description: "",
@@ -39,7 +39,6 @@ const Share = ({ signInStart, signUpStart, currentUser }) => {
   });
 
   useEffect(() => {
-    // getFood().then((r) => console.log(r));
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
         var lg = position.coords.longitude;
@@ -82,10 +81,8 @@ const Share = ({ signInStart, signUpStart, currentUser }) => {
       allergens: [soy, milk, gluten, egg],
       token: currentUser.token,
     };
-
-    createFood(response)
-      .then((r) => console.log(r))
-      .catch((e) => console.log(e));
+    console.log(response);
+    createFood(response);
   };
 
   const handleChange = (event) => {
@@ -372,4 +369,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-export default connect(mapStateToProps, null)(Share);
+const mapDispatchToProps = (dispatch) => ({
+  createFood: (payload) => dispatch(foodCreateStart(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Share);

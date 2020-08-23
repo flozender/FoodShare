@@ -13,7 +13,7 @@ import { requestSignIn, requestSignUp } from "../../utils/auth";
 function* signIn(payload) {
   try {
     const { data } = yield call(requestSignIn, payload);
-    console.log(data);
+    // console.log(data);
     if (data !== "") {
       // const { email } = data;
       yield put(signInSuccess(data));
