@@ -1,4 +1,5 @@
 const Food = require("../models/food");
+const { getDistance } = require("geolib");
 
 module.exports = {
   create: async (req, res) => {
@@ -43,8 +44,19 @@ module.exports = {
         );
       }
 
+      const userLat = req.body.lat;
+      const userLong = req.body.long;
+
       // Find only the available food items.
-      const food = await Food.find({ available: true });
+      let food = await Food.find({ available: true });
+
+      food = food.filter((foodItem) => {
+        const distance = getDistance(
+          { latitude: userLat, longitude: userLong },
+          { latitude: foodItem.lat, longitude: foodItem.long }
+        );
+        return distance / 1000 <= 20;
+      });
 
       if (food) {
         return res.status(200).send(food);

@@ -7,6 +7,8 @@ module.exports = {
       description: Joi.string().required().max(120),
       quantity: Joi.number().required(),
       expiresOn: Joi.date().required(),
+      lat: Joi.number().required(),
+      long: Joi.number().required(),
     });
 
     const { error } = schema.validate(req.body);
