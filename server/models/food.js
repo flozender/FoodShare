@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const foodSchema = new mongoose.Schema({
   name: String,
@@ -9,15 +9,18 @@ const foodSchema = new mongoose.Schema({
   description: String,
   host: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   guest: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   addedOn: {
     type: Date,
     default: Date.now,
+  },
+  expiresOn: {
+    type: Date,
   },
   quantity: {
     type: Number,
@@ -29,4 +32,4 @@ const foodSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("food", foodSchema);
+module.exports = mongoose.model('food', foodSchema);
