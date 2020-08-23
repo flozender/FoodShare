@@ -34,11 +34,17 @@ module.exports = {
 
   readAll: async (req, res) => {
     try {
+      // If the food item has expired, change availability to false.
       const count = await Food.countDocuments({});
       if (count > 0) {
-        await Food.deleteMany({ expiresOn: { $lt: Date.now() } });
+        await Food.updateMany(
+          { expiresOn: { $lt: Date.now() } },
+          { available: false }
+        );
       }
-      const food = await Food.find();
+
+      // Find only the available food items.
+      const food = await Food.find({ available: true });
 
       if (food) {
         return res.status(200).send(food);
