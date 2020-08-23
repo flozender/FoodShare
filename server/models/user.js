@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       validate: {
         validator: (v) => {
-          return /\d{3}-\d{3}-\d{4}/.test(v);
+          return /\d{10}/.test(v);
         },
         message: (props) => `${props.value} is not a valid phone number!`,
       },
@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       validate: {
         validator: (v) => {
-          return /\d{3}-\d{3}-\d{3}/.test(v);
+          return /\d{9}/.test(v);
         },
         message: (props) => `${props.value} is not a valid ssn number!`,
       },
@@ -97,12 +97,18 @@ function validateUser(user) {
     password: Joi.string().min(8).max(255).required(),
     phone: Joi.string()
       .trim()
-      .regex(/\d{3}-\d{3}-\d{4}/)
-      .required(),
+      .regex(/\d{10}/)
+      .required()
+      .messages({
+        'string.pattern.base': 'Phone number must be a 10 digit number',
+      }),
     ssn: Joi.string()
       .trim()
-      .regex(/\d{3}-\d{3}-\d{3}/)
-      .required(),
+      .regex(/\d{9}/)
+      .required()
+      .messages({
+        'string.pattern.base': 'SSN number must be a 9 digit number',
+      }),
   });
   return schema.validate(user);
 }
